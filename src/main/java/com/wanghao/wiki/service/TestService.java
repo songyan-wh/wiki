@@ -1,0 +1,19 @@
+package com.wanghao.wiki.service;
+
+import com.wanghao.wiki.domain.Test;
+import com.wanghao.wiki.mapper.TestMapper;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@Service
+public class TestService {
+    @Resource
+
+    private TestMapper testMapper;
+
+    public List<Test> list(){
+        return testMapper.list();
+    }
+}
