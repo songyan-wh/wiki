@@ -5,6 +5,7 @@ import com.wanghao.wiki.domain.EbookExample;
 import com.wanghao.wiki.mapper.EbookMapper;
 import com.wanghao.wiki.req.EbookReq;
 import com.wanghao.wiki.resp.EbookResp;
+import com.wanghao.wiki.util.CopyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ public class EbookService {
             respList.add(ebookResp);
 
         }
-        return respList;
+        List<EbookResp> list = CopyUtil.copyList(ebooklist,EbookResp.class);
+        return list;
     }
 }
