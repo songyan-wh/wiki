@@ -1,6 +1,7 @@
 package com.wanghao.wiki.controller;
 
 import com.wanghao.wiki.domain.Ebook;
+import com.wanghao.wiki.resp.CommonResp;
 import com.wanghao.wiki.service.EbookService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,5 +18,10 @@ public class EbookController {
     private EbookService ebookService;
 
     @GetMapping("/list")
-    public List<Ebook> list(){return ebookService.list();}
+    public CommonResp list() {
+        CommonResp<List<Ebook>> resp = new CommonResp<>();
+        List<Ebook> list = ebookService.list();
+        resp.setContent(list);
+        return resp;
+    }
 }
