@@ -2,5 +2,5 @@
   <div class="about">
     <h1>This is an about page</h1>
   </div>
-  <a-button>Default Button</a-button>
+  <a-button type="primary">Primary Button</a-button>
 </template>
