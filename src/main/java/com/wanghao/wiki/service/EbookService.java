@@ -1,5 +1,6 @@
 package com.wanghao.wiki.service;
 
+import com.github.pagehelper.PageHelper;
 import com.wanghao.wiki.domain.Ebook;
 import com.wanghao.wiki.domain.EbookExample;
 import com.wanghao.wiki.mapper.EbookMapper;
@@ -16,25 +17,19 @@ import java.util.List;
 
 @Service
 public class EbookService {
-    @Resource
 
+    @Resource
     private EbookMapper ebookMapper;
 
-    public List<EbookResp> list(EbookReq req){
+    public List<EbookResp> list(EbookReq req) {
         EbookExample ebookExample = new EbookExample();
         EbookExample.Criteria criteria = ebookExample.createCriteria();
-        if (!ObjectUtils.isEmpty(req.getName())){
-        criteria.andNameLike("%"+req.getName()+"%");
+        if (!ObjectUtils.isEmpty(req.getName())) {
+            criteria.andNameLike("%" + req.getName() + "%");
         }
-        List<Ebook> ebooklist = ebookMapper.selectByExample(ebookExample);
-        List<EbookResp> respList = new ArrayList<>();
-        for (Ebook ebook : ebooklist) {
-            EbookResp ebookResp = new EbookResp();
-            BeanUtils.copyProperties(ebook,ebookResp);
-            respList.add(ebookResp);
-
-        }
-        List<EbookResp> list = CopyUtil.copyList(ebooklist,EbookResp.class);
-        return list;
+        PageHelper.startPage(1, 3);
+        List<Ebook> ebooks = ebookMapper.selectByExample(ebookExample);
+        List<EbookResp> respList = CopyUtil.copyList(ebooks, EbookResp.class);
+        return respList;
     }
 }

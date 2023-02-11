@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
+//@RequestMapping("/ebook")
 public class TestController {
     @Resource
     private TestService testService;
